@@ -83,14 +83,13 @@ define HOSTAPD_BUILD_CMDS
 		LDFLAGS="$(TARGET_LDFLAGS)" LIBS="$(HOSTAPD_LIBS)" \
 		$(MAKE) CC="$(TARGET_CC)" -C $(@D)/$(HOSTAPD_SUBDIR)
 endef
-
 define HOSTAPD_INSTALL_TARGET_CMDS
 	$(INSTALL) -m 0755 -D $(@D)/$(HOSTAPD_SUBDIR)/hostapd \
 		$(TARGET_DIR)/usr/sbin/hostapd
 	$(INSTALL) -m 0755 -D $(@D)/$(HOSTAPD_SUBDIR)/hostapd_cli \
 		$(TARGET_DIR)/usr/bin/hostapd_cli
-	$(INSTALL) -m 0644 -D $(@D)/$(HOSTAPD_SUBDIR)/hostapd.conf \
-		$(TARGET_DIR)/etc/hostapd.conf
+	$(INSTALL) -m 644 -D package/hostapd/hostapd_ap.conf \
+		$(TARGET_DIR)/etc/hostapd_ap.conf
 endef
 
 $(eval $(generic-package))
